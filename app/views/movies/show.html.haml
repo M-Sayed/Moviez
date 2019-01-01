@@ -1,0 +1,36 @@
+.row.show-movie
+  .movie.row
+    .col-md-4.poster.text-center
+      %img{ src: @movie.poster_url, alt: 'poster not found' }
+    .col-md-7
+      .movie-details
+        .title-header
+          .title
+            %h2= @movie.title
+          .tagline
+            %p= @movie.tagline
+        .rate.actions
+          .badge.badge-light#rating
+          .d-none#movie_rate= @movie.rate
+        .overview
+          %h3 Overview
+          %p= @movie.overview
+
+  .similar-movies
+    = render partial: 'movies/movies', locals: { movies: @similar_movies }
+
+:javascript
+  $(document).ready(function() {
+    // TODO: refactor and package!
+    for(let i = 1; i <= 10; i++) {
+      let source = "#{image_url('star-off.png')}";
+      if(#{@movie.rate} > i) {
+        source = "#{image_url('star-on.png')}";
+      }else if(#{@movie.rate.to_i+1} == i && #{@movie.rate.to_i}!=#{@movie.rate}) {
+        source = "#{image_url('star-half.png')}";
+      }
+      $('#rating').append(
+        '<img alt="' + (i) + '" src="' + source + '" width=30>&nbsp;'
+      )
+    }
+  })

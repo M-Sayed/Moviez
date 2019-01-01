@@ -1,0 +1,9 @@
+%h1 Search Results
+= render partial: 'movies/movies', locals: { movies: @movies }
+
+.row.col-md-12
+  .text-center.next-search-page.col-md-12
+    - unless @movies.empty?
+      = link_to 'More Movies', search_movies_path(q:params[:q],page:@page+1)
+    - else
+      %p there're no more movies

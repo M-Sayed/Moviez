@@ -1,0 +1,17 @@
+.col-md-3
+  .movie-card.card{style: ""}
+    .movie-poster.card-img-top.text-center
+      %img{ src: movie.poster_url, alt: 'poster not found' }
+    .movie-details.card-body
+      .card-title
+        .title
+          = movie.title
+        .rate
+          rate:
+          .badge.badge-light
+            = movie.rate
+      .overview.card-text
+        = movie.overview
+    .actions.card-text
+      %a.float-left{href: 'path/to/move'} add to favorite
+      %a.float-right{href: movie_path(id: movie.movie_id)} see more >>

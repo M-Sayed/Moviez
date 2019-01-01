@@ -1,0 +1,4 @@
+- movies.each_slice(4) do |three_movies|
+  .row.movies-row
+    - three_movies.each do |movie|
+      = render partial: 'movies/movie', locals: { movie: movie }
