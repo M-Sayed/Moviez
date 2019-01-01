@@ -3,16 +3,26 @@
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title LynksChallenge
+    = csrf_meta_tag
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
     .container
-      .row.search-form
-        - if user_signed_in?
-          = form_with url: search_movies_path, method: :get, local: true do |f|
-            = f.text_field :q
-            = f.submit 'Search'
+      .row.header
+        .search-form.col-md-4
+          - if user_signed_in?
+            = render partial: 'shared/search_form'
+        .logo.col-md-4.text-center
+          %h1= link_to 'Home', root_path
+        .sign.col-md-4
+          %h1.float-right
+            - unless user_signed_in?
+              = link_to "sign in", new_user_session_path
+              |
+              = link_to "sign up", new_user_registration_path
+            - else
+              = link_to "sign out", destroy_user_session_path, method: :delete
       .row
         = yield

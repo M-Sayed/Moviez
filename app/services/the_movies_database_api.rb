@@ -14,6 +14,20 @@ class TheMoviesDatabaseApi
       handle_response(true)
     end
 
+    def top_movies
+      path   = "movie/top_rated"
+
+      @response = TMDB_Conn.get(path, PARAMS)
+      handle_response(true)
+    end
+
+    def popular_movies
+      path   = "movie/popular"
+
+      @response = TMDB_Conn.get(path, PARAMS)
+      handle_response(true)
+    end
+
     def movie_details(movie_id)
       path   = "movie/#{movie_id}"
 

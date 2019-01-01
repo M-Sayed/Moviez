@@ -1,12 +1,12 @@
-%h1 Homepage.
+- if @favorite_list.movies.count > 0
+  %h2 Favorite List
+  .row
+    = render partial: 'movies/movies', locals: { movies: @favorite_list.movies }
 
-= flash[:error]
+%h2 Popular
+.row
+  = render partial: 'movies/movies', locals: { movies: @popular_movies }
 
-%br
-
-- unless user_signed_in?
-  = link_to "sign in", new_user_session_path
-  %br/
-  = link_to "sign up", new_user_registration_path
-- else
-  = link_to "sign out", destroy_user_session_path, method: :delete
+%h2 Top Rated
+.row
+  = render partial: 'movies/movies', locals: { movies: @top_movies }

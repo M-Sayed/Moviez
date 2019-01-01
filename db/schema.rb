@@ -31,12 +31,13 @@ ActiveRecord::Schema.define(version: 2018_12_31_020637) do
   create_table "movies", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "movie_id"
     t.string "title"
-    t.string "overview"
+    t.text "overview"
     t.string "tagline"
     t.string "poster_path"
     t.decimal "rate", precision: 10, scale: 2, default: "0.0", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["movie_id"], name: "index_movies_on_movie_id", unique: true
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

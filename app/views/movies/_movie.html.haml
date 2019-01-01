@@ -13,5 +13,11 @@
       .overview.card-text
         = movie.overview
     .actions.card-text
-      %a.float-left{href: 'path/to/move'} add to favorite
+      - unless favorited? movie
+        %a.float-left{href: 'javascript:void(0)', onclick: "AddToFavorite(this, #{movie.movie_id})"}
+          %img{src: image_url('star-off.png')}
+      - else
+        %a.float-left{href: 'javascript:void(0)', onclick: "RemoveToFavorite(this, #{movie.movie_id})"}
+          %img{src: image_url('star-on.png')}
+
       %a.float-right{href: movie_path(id: movie.movie_id)} see more >>

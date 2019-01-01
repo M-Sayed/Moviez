@@ -19,13 +19,40 @@ class MoviesController < ApplicationController
 
   def show; end
 
+  def favorite
+    favorite_movie = FavoriteMovie.call(current_user, params[:movie_id])
+    respond_to do |format|
+      if favorite_movie.success?
+        format.json
+      else
+        format.json {
+          render json: { errors: favorite_movie.errors },
+                 status: :unprocessable_entity
+        }
+      end
+    end
+  end
+
+  def unfavorite
+    favorite_movie = FavoriteMovie.call(current_user, params[:movie_id], true)
+    respond_to do |format|
+      if favorite_movie.success?
+        format.json
+      else
+        format.json {
+          render json: { errors: favorite_movie.errors },
+                 status: :unprocessable_entity
+        }
+      end
+    end
+  end
+
   private
 
   def set_movie
-    @movie = Movie.find_by movie_id: params[:id]
-    movie_details = MovieDetails.call(params[:id])
-    redirect_to root_path unless movie_details.success? || @movie
-    @movie ||= movie_details.movie
+    movie_finder = MovieFinder.call(params[:id])
+    redirect_to root_path unless movie_finder.success?
+    @movie = movie_finder.movie
   end
 
   def set_similar_movie
