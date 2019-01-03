@@ -13,11 +13,12 @@
       .overview.card-text
         = movie.overview
     .actions.card-text
-      - unless favorited? movie
-        %a.float-left{href: 'javascript:void(0)', onclick: "AddToFavorite(this, #{movie.movie_id})"}
-          %img{src: image_url('star-off.png')}
-      - else
-        %a.float-left{href: 'javascript:void(0)', onclick: "RemoveToFavorite(this, #{movie.movie_id})"}
-          %img{src: image_url('star-on.png')}
+      - if user_signed_in?
+        - unless favorited? movie
+          %a.float-left{href: 'javascript:void(0)', onclick: "AddToFavorite(this, #{movie.movie_id})"}
+            %img{src: image_url('star-off.png')}
+        - else
+          %a.float-left{href: 'javascript:void(0)', onclick: "RemoveToFavorite(this, #{movie.movie_id})"}
+            %img{src: image_url('star-on.png')}
 
       %a.float-right{href: movie_path(id: movie.movie_id)} see more >>

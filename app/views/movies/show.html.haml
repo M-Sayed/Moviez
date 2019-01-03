@@ -17,6 +17,7 @@
           %p= @movie.overview
 
   .similar-movies
+    %h2 Similar movies
     = render partial: 'movies/movies', locals: { movies: @similar_movies }
 
 :javascript

@@ -10,7 +10,8 @@ class MoviesController < ApplicationController
 
     respond_to do |format|
       if movie_search.success?
-        format.html
+        format.html { render status: :ok }
+        format.json
       else
         format.html { redirect_to root_path, error: 'Something went wrong.' }
       end
@@ -21,6 +22,7 @@ class MoviesController < ApplicationController
 
   def favorite
     favorite_movie = FavoriteMovie.call(current_user, params[:movie_id])
+
     respond_to do |format|
       if favorite_movie.success?
         format.json
@@ -35,6 +37,7 @@ class MoviesController < ApplicationController
 
   def unfavorite
     favorite_movie = FavoriteMovie.call(current_user, params[:movie_id], true)
+
     respond_to do |format|
       if favorite_movie.success?
         format.json

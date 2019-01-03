@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 2018_12_31_020637) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["favorite_list_id"], name: "index_movie_favorite_lists_on_favorite_list_id"
+    t.index ["movie_id", "favorite_list_id"], name: "movie_id_favorite_list_id_uniqesness", unique: true
     t.index ["movie_id"], name: "index_movie_favorite_lists_on_movie_id"
   end
 

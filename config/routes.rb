@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: {
     sessions: 'users/sessions',
-    registrations: 'users/registrations',
-    passwords: 'users/passwords'
+    registrations: 'users/registrations'
   }
 
   get  '/search_movies' => 'movies#search', as: :search_movies

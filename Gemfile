@@ -19,9 +19,22 @@ gem 'bootstrap', '~> 4.2.1'
 gem 'jquery-rails'
 gem 'faraday'
 
+
+
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-end
+
+  gem 'capybara'
+    gem 'rspec-rails', '~> 3.8'
+    gem 'factory_bot_rails'
+    gem 'faker'
+  end
+
+  group :test do
+    gem 'shoulda-matchers', '4.0.0.rc1'
+    gem 'rails-controller-testing'
+    gem 'database_cleaner'
+  end
 
 group :development do
   gem 'web-console', '>= 3.3.0'

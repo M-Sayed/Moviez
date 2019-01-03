@@ -1,4 +1,4 @@
-- if @favorite_list.movies.count > 0
+- if @favorite_list && @favorite_list.movies.count > 0
   %h2 Favorite List
   .row
     = render partial: 'movies/movies', locals: { movies: @favorite_list.movies }

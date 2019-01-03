@@ -6,5 +6,11 @@ class CreateMovieFavoriteLists < ActiveRecord::Migration[5.2]
 
       t.timestamps
     end
+
+    ActiveRecord::Base.connection.execute <<-SQL
+      ALTER TABLE movie_favorite_lists
+        ADD CONSTRAINT movie_id_favorite_list_id_uniqesness
+          UNIQUE(movie_id,favorite_list_id);
+    SQL
   end
 end
