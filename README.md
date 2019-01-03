@@ -12,3 +12,11 @@
 - add your **tmdb[:api_key]** to your secret `EDITOR=vi rails credentials:edit`
 - run server `rails s -p3000`
 - go to http://localhost:3000
+- run specs 'rspec'
+
+## Features
+- user can sign up/in
+- user can search movies by keywords
+- user can add movies to their favorite list.
+- homepage shows the top rated & most popular movies.
+- homepage shows the favorite movies for logged in users.
